@@ -1,0 +1,28 @@
+client:
+  enabled: true
+  tolerations: |
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+      operator: Exists
+#  disableHostNodeID: true
+server:
+  tolerations: |
+    - effect: NoSchedule
+      key: node-role.kubernetes.io/master
+      operator: Exists
+  storageClass:
+  replicas: 3
+  bootstrapExpect: 3
+  storage: 100Mi
+  # affinity: {}
+
+dns:
+  enabled: false
+
+ui:
+  service:
+    type: NodePort
+
+global:
+  image: "hashicorp/consul:1.9.5"
+  imageK8S: "hashicorp/consul-k8s:0.25.0"
